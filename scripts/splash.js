@@ -28,13 +28,13 @@
     let width, height;
 
     if (sizeRandom < 0.3) {
-      width = 15; // small
+      width = 15;
       height = 16;
     } else if (sizeRandom < 0.6) {
-      width = 25; // medium
+      width = 25;
       height = 27;
     } else {
-      width = 35; // large
+      width = 35;
       height = 37;
     }
 

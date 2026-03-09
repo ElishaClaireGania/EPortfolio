@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const paragraphs = document.querySelectorAll(".home-content p");
   const originalTexts = [];
 
-  // Store original text and clear paragraphs
   paragraphs.forEach((p, index) => {
     originalTexts[index] = p.textContent.trim();
     p.textContent = "";
@@ -21,16 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
       if (currentChar < text.length) {
         p.textContent += text.charAt(currentChar);
         currentChar++;
-        setTimeout(typeWriter, 40); // Standard typing speed
+        setTimeout(typeWriter, 40);
       } else {
         p.classList.remove("typing-cursor");
         currentParagraph++;
         currentChar = 0;
-        setTimeout(typeWriter, 600); // Elegant pause between blocks
+        setTimeout(typeWriter, 600);
       }
     }
   }
 
-  // Delay start until hero elements settle
   setTimeout(typeWriter, 1200);
 });

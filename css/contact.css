@@ -403,8 +403,8 @@
   }
 
   .hero-content {
-    margin-right: 20px;
-    flex: 0 1 700px;
+    margin-right: 0px;
+    flex: 0 1 657px;
   }
 
   .hero-content h1 {
@@ -424,15 +424,15 @@
 
   /* Decorative Lines */
   .vertical-line {
-    right: 12%;
+    right: 25%;
   }
 
   .flower-container {
-    right: 12%;
+    right: 25%;
   }
 
   .horizontal-line {
-    top: 50%;
+    top: 54.5%;
   }
 
   /* Contact Form Container */
