@@ -1,4 +1,3 @@
-// Page Loading Screen
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     const path = window.location.pathname;
@@ -21,8 +20,30 @@
 
         setTimeout(function () {
           loadingScreen.style.display = "none";
+          setTimeout(initFadeInTransitions, 50);
         }, 600);
       }
     }, 3000);
   });
 })();
+
+/* ============ FADE IN TRANSITION ============ */
+function initFadeInTransitions() {
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  }, observerOptions);
+
+  const hiddenElements = document.querySelectorAll(".reveal");
+  hiddenElements.forEach((el) => observer.observe(el));
+
+  console.log("Fade-in transitions initialized after loading screen");
+}

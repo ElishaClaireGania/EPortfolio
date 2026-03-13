@@ -196,7 +196,7 @@
   background-color: var(--botanicalgreen);
   color: var(--lightpurple);
   font-family: var(--bodytext_buttons);
-  font-weight: bold;
+  font-size: 18px !important;
   border: none;
   padding: 12px 28px;
   border-radius: 4px;
@@ -306,11 +306,11 @@
 
   /* Decorative Lines */
   .vertical-line {
-    right: 20%;
+    right: 21%;
   }
 
   .flower-container {
-    right: 20%;
+    right: 21%;
     top: 57%;
   }
 
@@ -569,10 +569,6 @@
     background: var(--lightpurple);
     position: relative;
     z-index: 3;
-  }
-
-  .info-card ul li svg path {
-    stroke: var(--botanicalgreen);
   }
 
   .submit-btn:hover {

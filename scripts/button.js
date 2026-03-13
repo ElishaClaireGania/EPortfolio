@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Smooth Scroll back to top
   scrollBtn.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
@@ -18,5 +17,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-/* ============ NAVIGATION TOGGLE ============ */

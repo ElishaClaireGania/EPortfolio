@@ -16,8 +16,9 @@
     />
 
     <!-- SCRIPTS -->
-    <script src="scripts/button.js"></script>
-    <script src="scripts/page-loading.js"></script>
+    <script src="scripts/button.js" defer></script>
+    <script src="scripts/toggle.js" defer></script>
+    <script src="scripts/page-loading.js" defer></script>
   </head>
 
   <body>
@@ -74,55 +75,56 @@
             <li><a href="projects.html" class="link">Works</a></li>
             <li><a href="contact.html" class="link">Contact</a></li>
           </ul>
-        </div>
-        <div class="social-links-permanent">
-          <ul>
-            <li>
-              <a href="" class="nav-social-link">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  viewBox="0 0 30 30"
-                  fill="none"
-                >
-                  <path
-                    d="M23.75 3.75C24.413 3.75 25.0489 4.01339 25.5178 4.48223C25.9866 4.95107 26.25 5.58696 26.25 6.25V23.75C26.25 24.413 25.9866 25.0489 25.5178 25.5178C25.0489 25.9866 24.413 26.25 23.75 26.25H6.25C5.58696 26.25 4.95107 25.9866 4.48223 25.5178C4.01339 25.0489 3.75 24.413 3.75 23.75V6.25C3.75 5.58696 4.01339 4.95107 4.48223 4.48223C4.95107 4.01339 5.58696 3.75 6.25 3.75H23.75ZM23.125 23.125V16.5C23.125 15.4192 22.6957 14.3828 21.9315 13.6185C21.1672 12.8543 20.1308 12.425 19.05 12.425C17.9875 12.425 16.75 13.075 16.15 14.05V12.6625H12.6625V23.125H16.15V16.9625C16.15 16 16.925 15.2125 17.8875 15.2125C18.3516 15.2125 18.7967 15.3969 19.1249 15.7251C19.4531 16.0533 19.6375 16.4984 19.6375 16.9625V23.125H23.125ZM8.6 10.7C9.15695 10.7 9.6911 10.4788 10.0849 10.0849C10.4788 9.6911 10.7 9.15695 10.7 8.6C10.7 7.4375 9.7625 6.4875 8.6 6.4875C8.03973 6.4875 7.50241 6.71007 7.10624 7.10624C6.71007 7.50241 6.4875 8.03973 6.4875 8.6C6.4875 9.7625 7.4375 10.7 8.6 10.7ZM10.3375 23.125V12.6625H6.875V23.125H10.3375Z"
-                  />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="" class="nav-social-link">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  viewBox="0 0 30 30"
-                  fill="none"
-                >
-                  <path
-                    d="M15 2.5C13.3585 2.5 11.733 2.82332 10.2165 3.45151C8.69989 4.07969 7.3219 5.00043 6.16117 6.16117C3.81696 8.50537 2.5 11.6848 2.5 15C2.5 20.525 6.0875 25.2125 11.05 26.875C11.675 26.975 11.875 26.5875 11.875 26.25V24.1375C8.4125 24.8875 7.675 22.4625 7.675 22.4625C7.1 21.0125 6.2875 20.625 6.2875 20.625C5.15 19.85 6.375 19.875 6.375 19.875C7.625 19.9625 8.2875 21.1625 8.2875 21.1625C9.375 23.0625 11.2125 22.5 11.925 22.2C12.0375 21.3875 12.3625 20.8375 12.7125 20.525C9.9375 20.2125 7.025 19.1375 7.025 14.375C7.025 12.9875 7.5 11.875 8.3125 10.9875C8.1875 10.675 7.75 9.375 8.4375 7.6875C8.4375 7.6875 9.4875 7.35 11.875 8.9625C12.8625 8.6875 13.9375 8.55 15 8.55C16.0625 8.55 17.1375 8.6875 18.125 8.9625C20.5125 7.35 21.5625 7.6875 21.5625 7.6875C22.25 9.375 21.8125 10.675 21.6875 10.9875C22.5 11.875 22.975 12.9875 22.975 14.375C22.975 19.15 20.05 20.2 17.2625 20.5125C17.7125 20.9 18.125 21.6625 18.125 22.825V26.25C18.125 26.5875 18.325 26.9875 18.9625 26.875C23.925 25.2 27.5 20.525 27.5 15C27.5 13.3585 27.1767 11.733 26.5485 10.2165C25.9203 8.69989 24.9996 7.3219 23.8388 6.16117C22.6781 5.00043 21.3001 4.07969 19.7835 3.45151C18.267 2.82332 16.6415 2.5 15 2.5Z"
-                  />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="" class="nav-social-link">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  viewBox="0 0 30 30"
-                  fill="none"
-                >
-                  <path
-                    d="M9.75 2.5H20.25C24.25 2.5 27.5 5.75 27.5 9.75V20.25C27.5 22.1728 26.7362 24.0169 25.3765 25.3765C24.0169 26.7362 22.1728 27.5 20.25 27.5H9.75C5.75 27.5 2.5 24.25 2.5 20.25V9.75C2.5 7.82718 3.26384 5.98311 4.62348 4.62348C5.98311 3.26384 7.82718 2.5 9.75 2.5ZM9.5 5C8.30653 5 7.16193 5.47411 6.31802 6.31802C5.47411 7.16193 5 8.30653 5 9.5V20.5C5 22.9875 7.0125 25 9.5 25H20.5C21.6935 25 22.8381 24.5259 23.682 23.682C24.5259 22.8381 25 21.6935 25 20.5V9.5C25 7.0125 22.9875 5 20.5 5H9.5ZM21.5625 6.875C21.9769 6.875 22.3743 7.03962 22.6674 7.33265C22.9604 7.62567 23.125 8.0231 23.125 8.4375C23.125 8.8519 22.9604 9.24933 22.6674 9.54235C22.3743 9.83538 21.9769 10 21.5625 10C21.1481 10 20.7507 9.83538 20.4576 9.54235C20.1646 9.24933 20 8.8519 20 8.4375C20 8.0231 20.1646 7.62567 20.4576 7.33265C20.7507 7.03962 21.1481 6.875 21.5625 6.875ZM15 8.75C16.6576 8.75 18.2473 9.40848 19.4194 10.5806C20.5915 11.7527 21.25 13.3424 21.25 15C21.25 16.6576 20.5915 18.2473 19.4194 19.4194C18.2473 20.5915 16.6576 21.25 15 21.25C13.3424 21.25 11.7527 20.5915 10.5806 19.4194C9.40848 18.2473 8.75 16.6576 8.75 15C8.75 13.3424 9.40848 11.7527 10.5806 10.5806C11.7527 9.40848 13.3424 8.75 15 8.75ZM15 11.25C14.0054 11.25 13.0516 11.6451 12.3483 12.3483C11.6451 13.0516 11.25 14.0054 11.25 15C11.25 15.9946 11.6451 16.9484 12.3483 17.6517C13.0516 18.3549 14.0054 18.75 15 18.75C15.9946 18.75 16.9484 18.3549 17.6517 17.6517C18.3549 16.9484 18.75 15.9946 18.75 15C18.75 14.0054 18.3549 13.0516 17.6517 12.3483C16.9484 11.6451 15.9946 11.25 15 11.25Z"
-                  />
-                </svg>
-              </a>
-            </li>
-          </ul>
+
+          <div class="social-links-permanent">
+            <ul>
+              <li>
+                <a href="" class="nav-social-link">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    viewBox="0 0 30 30"
+                    fill="none"
+                  >
+                    <path
+                      d="M23.75 3.75C24.413 3.75 25.0489 4.01339 25.5178 4.48223C25.9866 4.95107 26.25 5.58696 26.25 6.25V23.75C26.25 24.413 25.9866 25.0489 25.5178 25.5178C25.0489 25.9866 24.413 26.25 23.75 26.25H6.25C5.58696 26.25 4.95107 25.9866 4.48223 25.5178C4.01339 25.0489 3.75 24.413 3.75 23.75V6.25C3.75 5.58696 4.01339 4.95107 4.48223 4.48223C4.95107 4.01339 5.58696 3.75 6.25 3.75H23.75ZM23.125 23.125V16.5C23.125 15.4192 22.6957 14.3828 21.9315 13.6185C21.1672 12.8543 20.1308 12.425 19.05 12.425C17.9875 12.425 16.75 13.075 16.15 14.05V12.6625H12.6625V23.125H16.15V16.9625C16.15 16 16.925 15.2125 17.8875 15.2125C18.3516 15.2125 18.7967 15.3969 19.1249 15.7251C19.4531 16.0533 19.6375 16.4984 19.6375 16.9625V23.125H23.125ZM8.6 10.7C9.15695 10.7 9.6911 10.4788 10.0849 10.0849C10.4788 9.6911 10.7 9.15695 10.7 8.6C10.7 7.4375 9.7625 6.4875 8.6 6.4875C8.03973 6.4875 7.50241 6.71007 7.10624 7.10624C6.71007 7.50241 6.4875 8.03973 6.4875 8.6C6.4875 9.7625 7.4375 10.7 8.6 10.7ZM10.3375 23.125V12.6625H6.875V23.125H10.3375Z"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="" class="nav-social-link">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    viewBox="0 0 30 30"
+                    fill="none"
+                  >
+                    <path
+                      d="M15 2.5C13.3585 2.5 11.733 2.82332 10.2165 3.45151C8.69989 4.07969 7.3219 5.00043 6.16117 6.16117C3.81696 8.50537 2.5 11.6848 2.5 15C2.5 20.525 6.0875 25.2125 11.05 26.875C11.675 26.975 11.875 26.5875 11.875 26.25V24.1375C8.4125 24.8875 7.675 22.4625 7.675 22.4625C7.1 21.0125 6.2875 20.625 6.2875 20.625C5.15 19.85 6.375 19.875 6.375 19.875C7.625 19.9625 8.2875 21.1625 8.2875 21.1625C9.375 23.0625 11.2125 22.5 11.925 22.2C12.0375 21.3875 12.3625 20.8375 12.7125 20.525C9.9375 20.2125 7.025 19.1375 7.025 14.375C7.025 12.9875 7.5 11.875 8.3125 10.9875C8.1875 10.675 7.75 9.375 8.4375 7.6875C8.4375 7.6875 9.4875 7.35 11.875 8.9625C12.8625 8.6875 13.9375 8.55 15 8.55C16.0625 8.55 17.1375 8.6875 18.125 8.9625C20.5125 7.35 21.5625 7.6875 21.5625 7.6875C22.25 9.375 21.8125 10.675 21.6875 10.9875C22.5 11.875 22.975 12.9875 22.975 14.375C22.975 19.15 20.05 20.2 17.2625 20.5125C17.7125 20.9 18.125 21.6625 18.125 22.825V26.25C18.125 26.5875 18.325 26.9875 18.9625 26.875C23.925 25.2 27.5 20.525 27.5 15C27.5 13.3585 27.1767 11.733 26.5485 10.2165C25.9203 8.69989 24.9996 7.3219 23.8388 6.16117C22.6781 5.00043 21.3001 4.07969 19.7835 3.45151C18.267 2.82332 16.6415 2.5 15 2.5Z"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="" class="nav-social-link">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    viewBox="0 0 30 30"
+                    fill="none"
+                  >
+                    <path
+                      d="M9.75 2.5H20.25C24.25 2.5 27.5 5.75 27.5 9.75V20.25C27.5 22.1728 26.7362 24.0169 25.3765 25.3765C24.0169 26.7362 22.1728 27.5 20.25 27.5H9.75C5.75 27.5 2.5 24.25 2.5 20.25V9.75C2.5 7.82718 3.26384 5.98311 4.62348 4.62348C5.98311 3.26384 7.82718 2.5 9.75 2.5ZM9.5 5C8.30653 5 7.16193 5.47411 6.31802 6.31802C5.47411 7.16193 5 8.30653 5 9.5V20.5C5 22.9875 7.0125 25 9.5 25H20.5C21.6935 25 22.8381 24.5259 23.682 23.682C24.5259 22.8381 25 21.6935 25 20.5V9.5C25 7.0125 22.9875 5 20.5 5H9.5ZM21.5625 6.875C21.9769 6.875 22.3743 7.03962 22.6674 7.33265C22.9604 7.62567 23.125 8.0231 23.125 8.4375C23.125 8.8519 22.9604 9.24933 22.6674 9.54235C22.3743 9.83538 21.9769 10 21.5625 10C21.1481 10 20.7507 9.83538 20.4576 9.54235C20.1646 9.24933 20 8.8519 20 8.4375C20 8.0231 20.1646 7.62567 20.4576 7.33265C20.7507 7.03962 21.1481 6.875 21.5625 6.875ZM15 8.75C16.6576 8.75 18.2473 9.40848 19.4194 10.5806C20.5915 11.7527 21.25 13.3424 21.25 15C21.25 16.6576 20.5915 18.2473 19.4194 19.4194C18.2473 20.5915 16.6576 21.25 15 21.25C13.3424 21.25 11.7527 20.5915 10.5806 19.4194C9.40848 18.2473 8.75 16.6576 8.75 15C8.75 13.3424 9.40848 11.7527 10.5806 10.5806C11.7527 9.40848 13.3424 8.75 15 8.75ZM15 11.25C14.0054 11.25 13.0516 11.6451 12.3483 12.3483C11.6451 13.0516 11.25 14.0054 11.25 15C11.25 15.9946 11.6451 16.9484 12.3483 17.6517C13.0516 18.3549 14.0054 18.75 15 18.75C15.9946 18.75 16.9484 18.3549 17.6517 17.6517C18.3549 16.9484 18.75 15.9946 18.75 15C18.75 14.0054 18.3549 13.0516 17.6517 12.3483C16.9484 11.6451 15.9946 11.25 15 11.25Z"
+                    />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
@@ -137,7 +139,7 @@
         />
 
         <div class="hero-overlay">
-          <div class="hero-bio">
+          <div class="hero-bio reveal">
             <p>
               Aspiring web developer and UI/UX designer, crafting purposeful
               digital experiences with clarity and creativity.
@@ -145,11 +147,11 @@
           </div>
 
           <div class="hero-main-title">
-            <h1 class="left-heading">KNOW MY</h1>
-            <h1 class="big-cursive">Story</h1>
+            <h1 class="left-heading reveal">KNOW MY</h1>
+            <h1 class="big-cursive reveal">Story</h1>
           </div>
 
-          <div class="hero-tagline">
+          <div class="hero-tagline reveal">
             <p><span class="small-cursive">Design </span> with Purpose,</p>
             <p class="indent-code">
               <span class="small-cursive">Code </span> with Clarity
@@ -159,25 +161,25 @@
       </section>
 
       <!-- ABOUT MAIN CONTENT -->
-      <section class="about-me">
+      <section class="about-me reveal">
         <!-- MAIN IMAGES -->
-        <div class="main-images-container">
+        <div class="main-images-container reveal">
           <h1 class="elisha-title">ELISHA</h1>
           <h1 class="claire-title">Claire</h1>
 
-          <div class="img-box left-box">
+          <div class="img-box left-box reveal">
             <img
               src="img/about-left.png"
               alt="A picture of mine drinking cola in a very cool style."
             />
           </div>
-          <div class="img-box middle-box">
+          <div class="img-box middle-box reveal">
             <img
               src="img/about-middle.jpg"
               alt="A close-up headshot of Me wearing glasses and a yellow and black striped shirt, smiling warmly."
             />
           </div>
-          <div class="img-box right-box">
+          <div class="img-box right-box reveal">
             <img
               src="img/about-right.png"
               alt="A close-up selfie with a pout mouth, insider our car."
@@ -185,7 +187,7 @@
           </div>
         </div>
 
-        <div class="about-text-columns">
+        <div class="about-text-columns reveal">
           <div class="column">
             <p>
               Mabuhay! I am Claire, an aspiring web developer passionate about
@@ -223,7 +225,7 @@
         </div>
 
         <!-- ADDITIONAL IMAGES -->
-        <div class="collage-container">
+        <div class="collage-container reveal">
           <img
             src="img/collage-img1.png"
             alt="A selfie of mine wearing a plaid hoodie with my new hairstyle."
@@ -254,12 +256,12 @@
 
       <!-- SOFT SKILLS -->
       <section class="softskills-wrapper">
-        <div class="soft-start">
+        <div class="soft-start reveal">
           <h2><span class="cursive">Soft </span> Skills</h2>
           <p>Interpersonal skills that define my professional style.</p>
         </div>
 
-        <div class="soft-skills">
+        <div class="soft-skills reveal">
           <div class="left-skills">
             <details class="softskill-item">
               <summary class="softskill-header">
@@ -386,7 +388,7 @@
 
       <!-- TECHNICAL SKILLS -->
       <section class="technicalskills-wrapper">
-        <div class="technical-start">
+        <div class="technical-start reveal">
           <h2 class="left-side">
             <span class="cursive">Technical </span> Skills
           </h2>
@@ -396,7 +398,7 @@
         </div>
 
         <!-- FRONTEND & FRAMEWORKS -->
-        <div class="frontend-lists">
+        <div class="frontend-lists reveal">
           <h3>FRONTEND & FRAMEWORKS</h3>
           <div class="line-divider"></div>
           <div class="frontend-skill">
@@ -491,7 +493,7 @@
         </div>
 
         <!-- BACKEND -->
-        <div class="backend-lists">
+        <div class="backend-lists reveal">
           <h3>BACKEND & DATABASES</h3>
           <div class="line-divider"></div>
 
@@ -617,7 +619,7 @@
         </div>
 
         <!-- DESIGN -->
-        <div class="design-lists">
+        <div class="design-lists reveal">
           <h3>DESIGN</h3>
           <div class="line-divider"></div>
 
@@ -655,7 +657,7 @@
 
       <!-- NEWSLETTER -->
       <section class="newsletter-wrapper">
-        <div class="newsletter-start">
+        <div class="newsletter-start reveal">
           <h1>LET'S <span class="cursive">get in</span> TOUCH</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -673,7 +675,7 @@
           </svg>
         </div>
 
-        <form action="#" class="newsletter-form">
+        <form action="#" class="newsletter-form reveal">
           <div class="input-group">
             <input type="email" placeholder="Your Email" required />
           </div>

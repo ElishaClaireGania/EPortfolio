@@ -30,5 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  setTimeout(typeWriter, 1200);
+  const splashScreen = document.getElementById("splash-screen");
+  if (splashScreen) {
+    setTimeout(typeWriter, 3500);
+  } else {
+    setTimeout(typeWriter, 500);
+  }
 });

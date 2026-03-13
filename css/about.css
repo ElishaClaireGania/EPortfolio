@@ -61,7 +61,7 @@
 .hero-bio {
   position: absolute;
   top: 100px;
-  right: 8%;
+  right: 7%;
   width: 350px;
   text-align: right;
   margin-top: 100px;
@@ -124,7 +124,7 @@
   font-family: var(--maincursive);
   color: var(--lightpurple);
   bottom: -200px;
-  right: -80%;
+  right: -75%;
   font-size: 200px;
   font-style: normal;
   font-weight: 400;
@@ -727,7 +727,7 @@ summary::-webkit-details-marker {
   .big-cursive {
     font-size: 160px;
     bottom: -140px;
-    right: -60%;
+    right: -70%;
   }
 
   .hero-tagline p {
@@ -1163,7 +1163,7 @@ summary::-webkit-details-marker {
   .big-cursive {
     font-size: 120px;
     bottom: -100px;
-    right: -50%;
+    right: -65%;
   }
 
   .hero-tagline {
