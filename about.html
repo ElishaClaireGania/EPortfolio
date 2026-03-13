@@ -19,6 +19,7 @@
     <script src="scripts/button.js" defer></script>
     <script src="scripts/toggle.js" defer></script>
     <script src="scripts/page-loading.js" defer></script>
+    <script src="scripts/newsletter.js" defer></script>
   </head>
 
   <body>
@@ -659,31 +660,48 @@
       <section class="newsletter-wrapper">
         <div class="newsletter-start reveal">
           <h1>LET'S <span class="cursive">get in</span> TOUCH</h1>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="90"
-            height="90"
-            viewBox="0 0 90 90"
-            fill="none"
-          >
-            <path
-              d="M63.75 67.5C62.7554 67.5 61.8016 67.1049 61.0983 66.4017C60.3951 65.6984 60 64.7446 60 63.75V30H26.25C25.2554 30 24.3016 29.6049 23.5984 28.9016C22.8951 28.1984 22.5 27.2446 22.5 26.25C22.5 25.2554 22.8951 24.3016 23.5984 23.5984C24.3016 22.8951 25.2554 22.5 26.25 22.5H63.75C64.7446 22.5 65.6984 22.8951 66.4017 23.5984C67.1049 24.3016 67.5 25.2554 67.5 26.25V63.75C67.5 64.7446 67.1049 65.6984 66.4017 66.4017C65.6984 67.1049 64.7446 67.5 63.75 67.5Z"
-            />
-            <path
-              d="M26.2499 67.4998C25.5084 67.4997 24.7835 67.2796 24.167 66.8676C23.5504 66.4555 23.0699 65.8699 22.7861 65.1848C22.5024 64.4996 22.4281 63.7458 22.5727 63.0184C22.7174 62.2911 23.0744 61.623 23.5987 61.0986L61.0987 23.5986C61.8059 22.9155 62.7532 22.5375 63.7364 22.546C64.7197 22.5546 65.6602 22.949 66.3555 23.6442C67.0508 24.3395 67.4452 25.2801 67.4537 26.2633C67.4623 27.2466 67.0843 28.1938 66.4012 28.9011L28.9012 66.4011C28.1981 67.1044 27.2444 67.4996 26.2499 67.4998Z"
-            />
-          </svg>
+          <a href="contact.html">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="90"
+              height="90"
+              viewBox="0 0 90 90"
+              fill="none"
+            >
+              <path
+                d="M63.75 67.5C62.7554 67.5 61.8016 67.1049 61.0983 66.4017C60.3951 65.6984 60 64.7446 60 63.75V30H26.25C25.2554 30 24.3016 29.6049 23.5984 28.9016C22.8951 28.1984 22.5 27.2446 22.5 26.25C22.5 25.2554 22.8951 24.3016 23.5984 23.5984C24.3016 22.8951 25.2554 22.5 26.25 22.5H63.75C64.7446 22.5 65.6984 22.8951 66.4017 23.5984C67.1049 24.3016 67.5 25.2554 67.5 26.25V63.75C67.5 64.7446 67.1049 65.6984 66.4017 66.4017C65.6984 67.1049 64.7446 67.5 63.75 67.5Z"
+              />
+              <path
+                d="M26.2499 67.4998C25.5084 67.4997 24.7835 67.2796 24.167 66.8676C23.5504 66.4555 23.0699 65.8699 22.7861 65.1848C22.5024 64.4996 22.4281 63.7458 22.5727 63.0184C22.7174 62.2911 23.0744 61.623 23.5987 61.0986L61.0987 23.5986C61.8059 22.9155 62.7532 22.5375 63.7364 22.546C64.7197 22.5546 65.6602 22.949 66.3555 23.6442C67.0508 24.3395 67.4452 25.2801 67.4537 26.2633C67.4623 27.2466 67.0843 28.1938 66.4012 28.9011L28.9012 66.4011C28.1981 67.1044 27.2444 67.4996 26.2499 67.4998Z"
+              />
+            </svg>
+          </a>
         </div>
 
-        <form action="#" class="newsletter-form reveal">
+        <form
+          action="#"
+          class="newsletter-form reveal"
+          id="newsletterForm"
+          method="POST"
+        >
           <div class="input-group">
-            <input type="email" placeholder="Your Email" required />
+            <input
+              type="email"
+              id="newsletter-email"
+              placeholder="Your Email"
+              required
+            />
           </div>
           <div class="input-group">
-            <input type="text" placeholder="Message" required />
+            <input
+              type="text"
+              id="newsletter-message"
+              placeholder="Message"
+              required
+            />
           </div>
 
-          <button type="submit" class="work-with-me-btn">
+          <button type="submit" class="work-with-me-btn" id="newsletterSubmit">
             <span class="cursive-button">Work with Me</span>
           </button>
         </form>

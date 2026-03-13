@@ -1,18 +1,31 @@
 (function () {
+  console.log(
+    "Newsletter.js loaded",
+    document.getElementById("newsletterForm"),
+  );
+
   const EMAILJS_CONFIG = {
     PUBLIC_KEY: "RYooBE-CVZSPN6bBc",
     SERVICE_ID: "service_a1vzs5w",
-    TEMPLATE_ID: "template_gm5sgk2",
+    NEWSLETTER_TEMPLATE_ID: "template_t999fvj",
   };
 
   emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
 
   document.addEventListener("DOMContentLoaded", function () {
-    const contactForm = document.querySelector(".contact-form");
-    if (!contactForm) return;
+    const newsletterForm = document.getElementById("newsletterForm");
+    if (!newsletterForm) {
+      console.log("Newsletter form not found");
+      return;
+    }
+
+    console.log("Newsletter form found, initializing...");
+
+    const modal = createNewsletterModal();
+    document.body.appendChild(modal);
 
     const messageContainer = document.createElement("div");
-    messageContainer.className = "contact-message-container";
+    messageContainer.className = "newsletter-message-container";
     messageContainer.style.cssText = `
       position: fixed;
       top: 20px;
@@ -25,9 +38,10 @@
     `;
     document.body.appendChild(messageContainer);
 
-    if (!document.querySelector("#contact-message-styles")) {
+    // Add animation styles
+    if (!document.querySelector("#newsletter-message-styles")) {
       const style = document.createElement("style");
-      style.id = "contact-message-styles";
+      style.id = "newsletter-message-styles";
       style.textContent = `
         @keyframes messageSlideIn {
           from {
@@ -55,37 +69,79 @@
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
+
+        @keyframes modalSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
       `;
       document.head.appendChild(style);
     }
 
-    const modal = createCustomModal();
-    document.body.appendChild(modal);
+    // Remove any existing event listeners by cloning and replacing
+    const newForm = newsletterForm.cloneNode(true);
+    newsletterForm.parentNode.replaceChild(newForm, newsletterForm);
 
-    contactForm.addEventListener("submit", async function (e) {
+    newForm.addEventListener("submit", async function (e) {
       e.preventDefault();
+      e.stopPropagation();
+
+      console.log("Form submitted");
+
+      const emailInput = document.getElementById("newsletter-email");
+      const messageInput = document.getElementById("newsletter-message");
+
+      if (!emailInput || !messageInput) {
+        console.log("Input fields not found");
+        return;
+      }
 
       const formData = {
-        from_name: document.getElementById("user-name").value.trim(),
-        phone: document.getElementById("user-phone").value.trim(),
-        from_email: document.getElementById("user-email").value.trim(),
-        message: document.getElementById("user-message").value.trim(),
+        email: emailInput.value.trim(),
+        message: messageInput.value.trim(),
       };
 
-      if (!validateForm(formData)) return;
+      console.log("Form data:", formData);
 
-      showCustomModal(modal, formData, async (confirmed) => {
+      // Validate form
+      if (!formData.email || !formData.message) {
+        showNewsletterMessage(
+          "error",
+          "Please fill in all fields",
+          messageContainer,
+        );
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        showNewsletterMessage(
+          "error",
+          "Please enter a valid email address",
+          messageContainer,
+        );
+        return;
+      }
+
+      // Show confirmation modal
+      showNewsletterModal(modal, formData, async (confirmed) => {
         if (confirmed) {
-          await sendEmail(formData, contactForm, messageContainer);
+          await sendNewsletterEmail(formData, newForm, messageContainer);
         }
-        hideCustomModal(modal);
+        hideNewsletterModal(modal);
       });
     });
   });
 
-  function createCustomModal() {
+  function createNewsletterModal() {
     const modal = document.createElement("div");
-    modal.className = "custom-confirm-modal";
+    modal.className = "newsletter-confirm-modal";
     modal.style.cssText = `
       position: fixed;
       top: 0;
@@ -123,7 +179,7 @@
           <div style="height: 2px; background: linear-gradient(90deg, transparent, #b8a3c2, #f0e6f5, #b8a3c2, transparent); width: 60px; margin: 8px auto;"></div>
         </div>
 
-        <div id="modal-content" style="
+        <div id="newsletter-modal-content" style="
           background: rgba(109, 88, 129, 0.2); 
           border-radius: 12px; 
           padding: 15px; 
@@ -136,7 +192,7 @@
         </div>
 
         <div style="display: flex; gap: 12px; justify-content: center; flex-shrink: 0;">
-          <button id="modal-cancel" style="
+          <button id="newsletter-modal-cancel" style="
             background: transparent;
             border: 2px solid #b8a3c2;
             color: #f0e6f5;
@@ -150,7 +206,7 @@
             font-size: 15px;
             letter-spacing: 0.5px;
           ">Cancel</button>
-          <button id="modal-confirm" style="
+          <button id="newsletter-modal-confirm" style="
             background: linear-gradient(135deg, #1b4c16 0%, #2a6b23 100%);
             border: none;
             color: #f0e6f5;
@@ -169,51 +225,30 @@
       </div>
     `;
 
+    // Add hover styles
     const style = document.createElement("style");
     style.textContent = `
-      @keyframes modalSlideIn {
-        from {
-          opacity: 0;
-          transform: translateY(-30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      
-      #modal-content::-webkit-scrollbar {
-        width: 5px;
-      }
-      #modal-content::-webkit-scrollbar-track {
-        background: rgba(184, 163, 194, 0.2);
-        border-radius: 10px;
-      }
-      #modal-content::-webkit-scrollbar-thumb {
-        background: #b8a3c2;
-        border-radius: 10px;
-      }
-
-      #modal-cancel:hover {
+      #newsletter-modal-cancel:hover {
         background: rgba(184, 163, 194, 0.2) !important;
         transform: translateY(-2px) scale(1.02) !important;
         box-shadow: 0 8px 20px rgba(184, 163, 194, 0.3) !important;
         border-color: #f0e6f5 !important;
-        color: #f0e6f5 !important;
+        color: #ffffff !important;
       }
 
-      #modal-confirm:hover {
-        background: #1b4c16 !important;
+      #newsletter-modal-confirm:hover {
+        background: linear-gradient(135deg, #2a6b23 0%, #1b4c16 100%) !important;
         transform: translateY(-2px) scale(1.02) !important;
         box-shadow: 0 10px 25px rgba(27, 76, 22, 0.6) !important;
+        border: 2px solid #f0e6f5 !important;
       }
 
-      #modal-cancel:active {
+      #newsletter-modal-cancel:active {
         transform: translateY(2px) scale(0.98) !important;
         box-shadow: 0 2px 10px rgba(184, 163, 194, 0.2) !important;
       }
 
-      #modal-confirm:active {
+      #newsletter-modal-confirm:active {
         transform: translateY(2px) scale(0.98) !important;
         box-shadow: 0 2px 10px rgba(27, 76, 22, 0.3) !important;
       }
@@ -223,8 +258,8 @@
     return modal;
   }
 
-  function showCustomModal(modal, formData, callback) {
-    const modalContent = modal.querySelector("#modal-content");
+  function showNewsletterModal(modal, formData, callback) {
+    const modalContent = modal.querySelector("#newsletter-modal-content");
 
     const truncatedMessage =
       formData.message.length > 150
@@ -234,16 +269,8 @@
     modalContent.innerHTML = `
       <div style="color: #f0e6f5;">
         <div style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed #b8a3c2;">
-          <span style="color: #b8a3c2; font-size: 11px; display: block; text-transform: uppercase; letter-spacing: 0.5px;">Name</span>
-          <strong style="font-size: 15px; word-break: break-word;">${formData.from_name}</strong>
-        </div>
-        <div style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed #b8a3c2;">
           <span style="color: #b8a3c2; font-size: 11px; display: block; text-transform: uppercase; letter-spacing: 0.5px;">Email</span>
-          <strong style="font-size: 14px; word-break: break-word;">${formData.from_email}</strong>
-        </div>
-        <div style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed #b8a3c2;">
-          <span style="color: #b8a3c2; font-size: 11px; display: block; text-transform: uppercase; letter-spacing: 0.5px;">Phone</span>
-          <strong style="font-size: 14px;">${formData.phone}</strong>
+          <strong style="font-size: 14px; word-break: break-word;">${formData.email}</strong>
         </div>
         <div>
           <span style="color: #b8a3c2; font-size: 11px; display: block; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px;">Message</span>
@@ -265,18 +292,8 @@
       </div>
     `;
 
-    const messageBox = modalContent.querySelector(
-      'div[style*="overflow-y: auto"]',
-    );
-    if (messageBox) {
-      messageBox.style.cssText += `
-        scrollbar-width: thin;
-        scrollbar-color: #b8a3c2 rgba(57, 35, 71, 0.5);
-      `;
-    }
-
-    const confirmBtn = modal.querySelector("#modal-confirm");
-    const cancelBtn = modal.querySelector("#modal-cancel");
+    const confirmBtn = modal.querySelector("#newsletter-modal-confirm");
+    const cancelBtn = modal.querySelector("#newsletter-modal-cancel");
 
     const confirmHandler = () => {
       callback(true);
@@ -299,91 +316,62 @@
     modal.style.display = "flex";
   }
 
-  function hideCustomModal(modal) {
+  function hideNewsletterModal(modal) {
     modal.style.display = "none";
   }
 
-  function validateForm(data) {
-    if (!data.from_name || !data.phone || !data.from_email || !data.message) {
-      showContactMessage(
-        "error",
-        "Please fill in all fields",
-        document.querySelector(".contact-message-container"),
-      );
-      return false;
-    }
+  async function sendNewsletterEmail(data, form, messageContainer) {
+    const submitBtn = document.getElementById("newsletterSubmit");
+    if (!submitBtn) return;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.from_email)) {
-      showContactMessage(
-        "error",
-        "Please enter a valid email address",
-        document.querySelector(".contact-message-container"),
-      );
-      return false;
-    }
-
-    if (data.phone.length < 5) {
-      showContactMessage(
-        "error",
-        "Please enter a valid phone number",
-        document.querySelector(".contact-message-container"),
-      );
-      return false;
-    }
-
-    return true;
-  }
-
-  async function sendEmail(data, form, messageContainer) {
-    const loadingAlert = showLoadingAlert();
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="cursive-button">Sending...</span>';
+    submitBtn.disabled = true;
 
     const templateParams = {
-      from_name: data.from_name,
-      from_email: data.from_email,
-      phone: data.phone,
+      from_email: data.email,
       message: data.message,
       time: new Date().toLocaleString(),
+      to_email: "elishaclairegania@gmail.com",
     };
 
     try {
       const response = await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.TEMPLATE_ID,
+        EMAILJS_CONFIG.NEWSLETTER_TEMPLATE_ID,
         templateParams,
       );
 
-      console.log("Email sent successfully!", response);
-      if (loadingAlert) loadingAlert.close();
+      console.log("Newsletter email sent successfully!", response);
 
-      showContactMessage(
+      showNewsletterMessage(
         "success",
-        "Message sent successfully! I'll get back to you within 24 hours.",
+        "Thanks for reaching out! I'll get back to you soon.",
         messageContainer,
       );
 
       form.reset();
     } catch (error) {
-      console.error("Failed to send email:", error);
-      if (loadingAlert) loadingAlert.close();
+      console.error("Failed to send newsletter email:", error);
 
-      showContactMessage(
+      showNewsletterMessage(
         "error",
-        "Failed to send message. Please try again or email me directly at elishaclairegania@gmail.com",
+        "Failed to send message. Please try again or email me directly.",
         messageContainer,
       );
+    } finally {
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
     }
   }
 
-  function showContactMessage(type, message, container) {
-    if (!container) return;
-
+  function showNewsletterMessage(type, message, container) {
     const messageEl = document.createElement("div");
 
     const isSuccess = type === "success";
     const bgColor = isSuccess ? "#1b4c16" : "#6d5881";
     const icon = isSuccess ? "✓" : "!";
-    const title = isSuccess ? "Success!" : "Error";
+    const title = isSuccess ? "Thank You!" : "Oops!";
 
     messageEl.style.cssText = `
       background: linear-gradient(135deg, ${bgColor}, ${isSuccess ? "#2a6b23" : "#392347"});
@@ -446,57 +434,5 @@
         }, 300);
       }
     }, 5000);
-  }
-
-  function showLoadingAlert() {
-    const loadingDiv = document.createElement("div");
-    loadingDiv.style.cssText = `
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(135deg, #392347, #4a2b5a);
-      color: #f0e6f5;
-      padding: 25px 35px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      z-index: 1000000;
-      font-family: 'Raleway', sans-serif;
-      text-align: center;
-      border: 2px solid #b8a3c2;
-      backdrop-filter: blur(10px);
-      animation: fadeIn 0.3s ease;
-    `;
-
-    loadingDiv.innerHTML = `
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
-        <div style="
-          width: 50px;
-          height: 50px;
-          border: 4px solid rgba(240, 230, 245, 0.2);
-          border-top: 4px solid #f0e6f5;
-          border-right: 4px solid #b8a3c2;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        "></div>
-        <div>
-          <p style="margin: 0 0 5px 0; font-size: 18px; font-weight: 600;">Sending Message</p>
-          <p style="margin: 0; font-size: 14px; opacity: 0.8;">Please wait a moment...</p>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(loadingDiv);
-
-    return {
-      close: function () {
-        if (loadingDiv && loadingDiv.parentNode) {
-          loadingDiv.style.animation = "fadeOut 0.2s ease forwards";
-          setTimeout(() => {
-            if (loadingDiv.parentNode) loadingDiv.remove();
-          }, 200);
-        }
-      },
-    };
   }
 })();
